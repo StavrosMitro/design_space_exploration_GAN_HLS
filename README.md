@@ -52,8 +52,19 @@ For the optimized 8-bit configuration, the resource utilization on the FPGA was:
 * **LUT:** 7335/17600 (41.68%).
 * **FF:** 7584/35200 (21.55%).
 
-## 5. File Structure
+## 5. Prerequisites & Setup
+* **Hardware:** Digilent Zybo Z7-10 (Zynq-7000 ARM/FPGA SoC).
+* **Software:** Xilinx SDSoC Environment.
+* **Dataset:** The application requires a `data.txt` file containing flattened MNIST images (semicolon separated) in the working directory.
+
+## 6. Usage
+1. **Build:** Import the project into Xilinx SDSoC and build for the Zybo platform.
+2. **Run:** Copy the executable and `data.txt` to the SD card. Run the executable on the board.
+3. **Output:** The program generates `output.txt` comparing Software vs Hardware inference results.
+
+## 7. File Structure
 * **`final.cpp`**: The hardware-accelerated C++ code containing the HLS pragmas (Partitioning, Allocation, Pipelining).
 * **`main.cpp`**: The software testbench used to parse the dataset, run the hardware/software comparison, and calculate speedup.
 * **`network.h`**: Header file defining the neural network dimensions and `ap_fixed` data types.
+* **`tanh.h`**: Look-up table for the hyperbolic tangent activation function.
 * **`LICENSE`**: MIT License covering the software distribution.
